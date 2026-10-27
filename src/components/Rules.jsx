@@ -35,7 +35,6 @@ function Rules(){
             innappropriate, you will be required to change it on the day of the
             Hackathon.
           </li>
-          <li>Participants must be at least 18 years of age.</li>
           <li>
             Use common sense; please don't be the reason we need to add to this list next year.
           </li>
