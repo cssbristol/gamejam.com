@@ -39,7 +39,7 @@ This website is created by **2026/2026 CSS webmaster** [Jake Snee](https://www.l
 
 ## Deployment
 
-This project is hosted on [gamejam.netlify.app](https://gamejam.netlify.app).
+This project is hosted on [uobgamejam.netlify.app](https://uobgamejam.netlify.app).
 
 This project is continuously deployed via [Netlify](https://www.netlify.com/). Every push to the repository triggers an automatic deployment, and you can view the current deployment status via the badge at the top of this README.
 
