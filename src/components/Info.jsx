@@ -7,13 +7,13 @@ function Info() {
       <div className="logo">
         
       </div>
-      <div className="heading">BrisHack 2026</div>
+      <div className="heading">Gamejam 2026</div>
       <div className="university">
         <a href="https://www.bristol.ac.uk/">University of Bristol</a>
       </div>
-      <div className="date">21st - 22nd February</div>
+      <div className="date">7th - 8th November</div>
       <div className="location">MVB</div>
-      <div className="theme">Theme : "Space"</div>
+      <div className="theme">Theme : "Time"</div>
     </div>
   );
 }

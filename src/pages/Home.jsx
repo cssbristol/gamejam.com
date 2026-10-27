@@ -4,7 +4,6 @@ import Info from "../components/Info"
 import Navbar from "../components/Navbar"
 import Counter from "../components/Counter"
 import Societies from "../components/Societies"
-import About from "../components/About"
 import Schedule from "../components/Schedule"
 import Prizes from "../components/Prizes"
 import Rules from "../components/Rules"
@@ -33,11 +32,9 @@ function Home() {
         <Navbar></Navbar>
         <Info></Info>
         <Counter></Counter>
-        <About></About>
         <Rules></Rules>
         <Prizes></Prizes>
         <Schedule></Schedule>
-        <Societies></Societies>
         <Sponsors></Sponsors>
       </div>
       <Footer></Footer>

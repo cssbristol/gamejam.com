@@ -11,9 +11,6 @@ function Societies() {
         <a href="https://cssbristol.co.uk/">
           <img className="css-logo" src={cssLogo} alt="CSS Bristol Logo" />
         </a>
-        <a href="https://www.beees.co.uk/">
-          <img className="beees-logo" src={beeesLogo} alt="BEEES Logo" />
-        </a>
       </div>
     </div>
   );
