@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
-import Particle from "../components/Particle"
 import Info from "../components/Info"
 import Navbar from "../components/Navbar"
 import Counter from "../components/Counter"
@@ -13,6 +12,7 @@ import Rules from "../components/Rules"
 import Sponsors from "../components/Sponsors"
 import Footer from "../components/Footer"
 import "../css/Home.css"
+import TimeBackground from "../components/TimeBackground"
 
 function Home() {
 
@@ -29,7 +29,7 @@ function Home() {
 
   return (
     <div className="main">
-      <Particle></Particle>
+      <TimeBackground />
       <div className="text-wrapper orbitron">
         <Navbar></Navbar>
         <Info></Info>
