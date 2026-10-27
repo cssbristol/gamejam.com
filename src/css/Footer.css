@@ -1,10 +1,10 @@
 /* Footer.css */
 
 .footer {
-  --primary-color: #333;
-  --secondary-color: #555;
-  --hover-color: #6C5CE7;
-  --separator-color: #bbb;
+  --primary-color: #ffffff;
+  --secondary-color: #ffffff;
+  --hover-color: #ffffff;
+  --separator-color: #ffffff;
 
   color: var(--primary-color);
   padding: 15px 20px;
@@ -58,6 +58,7 @@
 
   .footer-links {
     justify-content: center;
+    color: #ffffff;
   }
 
   .footer-copyright {

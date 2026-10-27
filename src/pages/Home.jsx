@@ -37,8 +37,8 @@ function Home() {
         <Prizes></Prizes>
         <Schedule></Schedule>
         <Sponsors></Sponsors>
+        <Footer></Footer>
       </div>
-      <Footer></Footer>
     </div>
   );
 }
