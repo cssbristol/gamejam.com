@@ -1,4 +1,3 @@
-import brishackLogo from "../assets/brishack_space_logo.png"
 import '../css/Info.css'
 
 function Info() {

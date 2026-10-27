@@ -39,12 +39,10 @@
 }
 
 .sponsor-logo {
-    width: 200px;
-    height: auto;
+    width: 150px;
+    height: 150px;
     object-fit: contain;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    filter: grayscale(40%);
-    opacity: 0.8;
 }
 
 .sponsor-logo:hover {

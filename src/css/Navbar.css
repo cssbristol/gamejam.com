@@ -4,7 +4,7 @@
   align-items: center;
   width: 100%;
   padding: 15px 30px;
-  color: #000000;
+  color: #6C5CE7;
   position: fixed;
   top: 0;
   left: 0;
@@ -18,7 +18,7 @@
   font-weight: 400;
   font-style: normal;
   font-size: 2rem;
-  color: black;
+  color: #6C5CE7;
   font-weight: bold;
   cursor: pointer;
   transition: color 0.3s ease-in-out;

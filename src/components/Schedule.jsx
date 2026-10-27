@@ -28,8 +28,8 @@ function Schedule() {
                 <td>Start Coding</td>
               </tr>
               <tr>
-                <td>21:30</td>
-                <td>Move to Queens Cafe</td>
+                <td>18:00</td>
+                <td>Pizza</td>
               </tr>
             </tbody>
           </table>
@@ -43,10 +43,6 @@ function Schedule() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>10:00</td>
-                <td>Move back to MVB</td>
-              </tr>
               <tr>
                 <td>10:15</td>
                 <td>Breakfast</td>

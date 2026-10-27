@@ -1,7 +1,5 @@
 import '../css/Societies.css';
 import cssLogo from "../assets/css_logo.png";
-import beeesLogo from "../assets/beees_logo.png";
-import blockChainLogo from "../assets/blockchain_logo.jpeg"
 
 function Societies() {
   return (

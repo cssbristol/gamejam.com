@@ -1,17 +1,40 @@
 import "../css/Sponsors.css";
-import babcock_logo from "../assets/babcock_logo.svg";
-import imagination_technologies_logo from "../assets/Imagination_Technologies_logo.svg";
 
 const sponsors = [
   {
-    name: "Babcock",
-    link: "https://earlycareers.babcockinternational.com/",
-    image: babcock_logo,
+    name: "Programming Languages Research Group",
+    link: "https://www.bristol.ac.uk/research/groups/programming-languages/",
+    image: "src/assets/plrg.png"
   },
   {
-    name: "Imagination Technologies",
-    link: "https://www.imaginationtech.com/careers/early-careers/",
-    image: imagination_technologies_logo,
+    name: "Ground Shatter",
+    link: "https://www.groundshatter.com/",
+    image: "src/assets/ground-shatter.png"
+  },
+  {
+    name: "Ghyston",
+    link: "https://www.ghyston.com/",
+    image: "src/assets/ghyston.png"
+  },
+  {
+    name: "TPP",
+    link: "https://tpp-uk.com/",
+    image: "src/assets/tpp.png"
+  },
+  {
+    name: "AI4CI",
+    link: "https://ai4ci.ac.uk/",
+    image: "src/assets/ai4ci.svg"
+  },
+  {
+    name: "Susquehanna",
+    link: "https://sig.com/",
+    image: "src/assets/susquehanna.png"
+  },
+  {
+    name: "Trackr",
+    link: "https://the-trackr.com/",
+    image: "src/assets/trackr.png"
   },
 ];
 

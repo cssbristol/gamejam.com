@@ -6,19 +6,32 @@ function Prizes(){
             <table className="prize-table">
                 <caption className="prize-heading">Categories</caption>
                 <tr>
-                    <td className="category-row">Best Software</td>
+                    <td className="category-row">Best Overall Game</td>
+                    <td className="category-row">£500</td>
                 </tr>
                 <tr>
-                    <td className="category-row">Most Creative</td>
+                    <td className="category-row">Most Innovative Use of Time</td>
+                    <td className="category-row">£300</td>
                 </tr>
                 <tr>
-                    <td className="category-row">Best Real World Application</td>
+                    <td className="category-row">Best Functional Programming Game</td>
+                    <td className="category-row">£500</td>
                 </tr>
                 <tr>
-                    <td className="category-row">Best Electronics</td>
+                    <td className="category-row">Best Graphics</td>
+                    <td className="category-row">£400</td>
                 </tr>
                 <tr>
-                    <td className="category-row">Best UI</td>
+                    <td className="category-row">Best Co-op Game</td>
+                    <td className="category-row">£500</td>
+                </tr>
+                <tr>
+                    <td className="category-row">People's Choice</td>
+                    <td className="category-row">£400</td>
+                </tr>
+                <tr>
+                    <td className="category-row">Trackr Innovation Award</td>
+                    <td className="category-row"></td>
                 </tr>
             </table>
         </div>
