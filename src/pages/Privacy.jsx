@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../css/Privacy.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import TimeBackground from "../components/TimeBackground";
+import TimeVortex from "../components/TimeVortex";
 
 function Privacy() {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,7 +13,7 @@ function Privacy() {
 
   return (
     <div className="privacy-page">
-      <TimeBackground />
+      <TimeVortex />
       <Navbar />
       <div className={`privacy-container ${isVisible ? "fade-in" : ""}`}>
         <div className="privacy-text-wrapper">

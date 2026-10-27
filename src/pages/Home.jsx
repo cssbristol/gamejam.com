@@ -10,7 +10,7 @@ import Rules from "../components/Rules"
 import Sponsors from "../components/Sponsors"
 import Footer from "../components/Footer"
 import "../css/Home.css"
-import TimeBackground from "../components/TimeBackground"
+import TimeVortex from "../components/TimeVortex"
 
 function Home() {
 
@@ -27,9 +27,10 @@ function Home() {
 
   return (
     <div className="main">
-      <TimeBackground />
+      <TimeVortex />
       <div className="text-wrapper orbitron">
         <Navbar></Navbar>
+        <div style={{ height: "100vh" }} />
         <Info></Info>
         <Counter></Counter>
         <Rules></Rules>

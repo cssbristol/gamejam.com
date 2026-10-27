@@ -1,12 +1,12 @@
 import "../css/TandC.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import TimeBackground from "../components/TimeBackground";
+import TimeVortex from "../components/TimeVortex";
 
 function TandC() {
   return (
     <div className="tandc-page">
-      <TimeBackground />
+      <TimeVortex />
       <Navbar />
       <div className="tandc-container">
         <div className="tandc-text-wrapper">
