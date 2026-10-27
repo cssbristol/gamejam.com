@@ -4,7 +4,7 @@ function About() {
   return (
     <div className="about-section" id="about">
       <p className="about-heading">About</p>
-      <p className="about-content exo-2 italics">
+      <p className="about-content">
         "A hackathon is an event where participants, usually programmers,
         designers, and innovators, collaborate intensively on software or
         hardware projects within a limited time—typically 24 to 48 hours. The
@@ -14,7 +14,7 @@ function About() {
           ChatGPT
         </a>
       </p>
-      <p className="about-content exo-2">
+      <p className="about-content">
         BrisHack is the University of Bristol's annual 24-hour hackathon,
         organised by the Computer Science Society (CSS) and the Bristol Electrical
         and Electronic Engineering Society (BEEES). It is a fantastic opportunity to dive into new

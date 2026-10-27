@@ -7,7 +7,6 @@ import Societies from "../components/Societies"
 import About from "../components/About"
 import Schedule from "../components/Schedule"
 import Prizes from "../components/Prizes"
-import FAQ from "../components/FAQ"
 import Rules from "../components/Rules"
 import Sponsors from "../components/Sponsors"
 import Footer from "../components/Footer"
@@ -37,7 +36,6 @@ function Home() {
         <About></About>
         <Rules></Rules>
         <Prizes></Prizes>
-        <FAQ></FAQ>
         <Schedule></Schedule>
         <Societies></Societies>
         <Sponsors></Sponsors>

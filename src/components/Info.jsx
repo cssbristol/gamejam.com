@@ -5,11 +5,7 @@ function Info() {
   return (
     <div className="info-section" id="home">
       <div className="logo">
-        <img
-          className="brishack-logo"
-          src={brishackLogo}
-          alt="brishack logo 2026"
-        />
+        
       </div>
       <div className="heading">BrisHack 2026</div>
       <div className="university">

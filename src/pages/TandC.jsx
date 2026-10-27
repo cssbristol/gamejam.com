@@ -1,12 +1,12 @@
 import "../css/TandC.css";
-import Particle from "../components/Particle";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import TimeBackground from "../components/TimeBackground";
 
 function TandC() {
   return (
     <div className="tandc-page">
-      <Particle />
+      <TimeBackground />
       <Navbar />
       <div className="tandc-container">
         <div className="tandc-text-wrapper">
