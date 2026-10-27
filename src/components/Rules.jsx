@@ -26,7 +26,7 @@ function Rules(){
           <li>Projects must not be obscene or offensive.</li>
           <li>
             Participants retain the rights to all IP produced during the
-            hackathon, but give CSS, BEEES and BBS the University and event sponsors
+            hackathon, but give CSS, the University and event sponsors
             permission to showcase projects (with appropriate credit) on website,
             blogs, etc. if they wish to do so.
           </li>
@@ -36,10 +36,6 @@ function Rules(){
             Hackathon.
           </li>
           <li>Participants must be at least 18 years of age.</li>
-          <li>
-            Use of the Hackspace is prohibited when under the influence of drugs
-            alcohol.
-          </li>
           <li>
             Use common sense; please don't be the reason we need to add to this list next year.
           </li>
