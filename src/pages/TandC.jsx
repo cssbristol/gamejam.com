@@ -15,10 +15,9 @@ function TandC() {
 
           <ol>
             <li>
-              This website, <a href="https://brishack.io/">brishack.io</a> (the
-              'Website') is provided by Bristol Electrical and Electronic
-              Engineering Society ('BEEES') and the University of Bristol
-              Computer Science Society ('CSS'), both affiliated with the
+              This website, <a href="https://uobgamejam.netlify.app">gamejam.com</a> (the
+              'Website') is provided by the University of Bristol
+              Computer Science Society ('CSS'), affiliated with the
               University of Bristol Students' Union ('Bristol SU'). The use of
               the Website is governed by these Terms and Conditions and such
               other documents referred to herein. By using the Website you
@@ -135,9 +134,9 @@ function TandC() {
                 cs-society@bristol.ac.uk
               </a>{" "}
               or
-              <a href="mailto:webmaster@beees.org.uk">
+              <a href="mailto:webmaster@cssbristol.co.uk">
                 {" "}
-                webmaster@beees.org.uk
+                webmaster@cssbristol.co.uk
               </a>
               .
             </li>

@@ -17,26 +17,22 @@ function Privacy() {
       <Navbar />
       <div className={`privacy-container ${isVisible ? "fade-in" : ""}`}>
         <div className="privacy-text-wrapper">
-          <h1>Brishack Privacy Policy</h1>
+          <h1>Gamejam Privacy Policy</h1>
           <p>
             <strong>Effective Date:</strong> 21 January 2025
           </p>
           <p>
-            <strong>Last Updated:</strong> 21 January 2025
+            <strong>Last Updated:</strong> 27 October 2026
           </p>
           <h2>1. Introduction</h2>
           <p>
-            Welcome to Brishack, an event organised by the{" "}
-            <strong>Computer Science Society (CSS)</strong>, the{" "}
-            <strong>
-              Bristol Electrical and Electronic Engineering Society (BEEES)
-            </strong>{" "}
-            and the <strong>Bristol Blockchain Society (BBS)</strong> ("we,"
+            Welcome to Gamejam, an event organised by the{" "}
+            <strong>Computer Science Society (CSS)</strong> ("we,"
             "our," or "us"). We are committed to protecting your privacy and
             ensuring compliance with the UK General Data Protection Regulation
             (UK GDPR) and the Data Protection Act 2018. This Privacy Policy
             explains how we handle your personal data when you participate in
-            Brishack.
+            Gamejam.
           </p>
 
           <h2>2. Data We Collect</h2>
@@ -58,7 +54,7 @@ function Privacy() {
             </li>
             <li>
               <strong>Microsoft Forms Applications:</strong> If you apply to
-              participate in Brishack, we collect and process:
+              participate in Gamejam, we collect and process:
               <ul>
                 <li>Full name</li>
                 <li>Email address</li>
@@ -71,7 +67,7 @@ function Privacy() {
           <h2>3. How We Use Your Data</h2>
           <p>
             We collect this information solely for the purpose of organizing and
-            managing Brishack, including:
+            managing Gamjam, including:
           </p>
           <ul>
             <li>Processing applications for participation.</li>
@@ -83,7 +79,7 @@ function Privacy() {
           <p>
             Your personal data will be stored securely and will only be
             accessible to the event organisers. We will retain your data only
-            for the duration of Brishack and will delete it no later than
+            for the duration of Gamejam and will delete it no later than
             <strong>30 April 2025</strong>.
           </p>
 
