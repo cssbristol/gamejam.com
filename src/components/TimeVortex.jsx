@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from "react";
 import "./TimeVortex.css";
 
@@ -15,11 +14,14 @@ export default function TimeVortex() {
     let clocks = [];
     let tardis = null;
     let tardisTimer = 0;
+    let delorean = null;
+    let deloreanTimer = 0;
+    let deloreanNextSpawn = 1800 + Math.random() * 1200;
 
     const rand = (min, max) =>
       min + Math.random() * (max - min);
 
-    // Create 2D clocks that fly across the screen
+    // Create 2D clocks that fly across the screen.
     const createClock = (randomPosition = true) => ({
       x: randomPosition ? rand(0, width) : -60,
       y: randomPosition ? rand(0, height) : rand(0, height),
@@ -42,6 +44,22 @@ export default function TimeVortex() {
       spin: rand(-0.003, 0.003),
       alpha: rand(0.75, 1),
     });
+
+    const createDelorean = () => {
+      const fromLeft = Math.random() > 0.5;
+
+      return {
+        x: fromLeft ? -150 : width + 150,
+        y: rand(height * 0.15, height * 0.85),
+        vx: fromLeft ? rand(2, 3.5) : -rand(2, 3.5),
+        vy: rand(-0.3, 0.3),
+        size: rand(75, 115),
+        rotation: rand(-0.04, 0.04),
+        spin: rand(-0.001, 0.001),
+        alpha: rand(0.8, 1),
+        direction: fromLeft ? 1 : -1,
+      };
+    };
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -67,7 +85,7 @@ export default function TimeVortex() {
       clocks = Array.from({ length: 12 }, () => createClock());
     };
 
-    // Draw a floating antique clock
+    // Draw a floating antique clock.
     const drawClock = (clock) => {
       const { x, y, size, rotation, alpha, color } = clock;
       const r = size / 2;
@@ -77,12 +95,11 @@ export default function TimeVortex() {
       ctx.rotate(rotation);
       ctx.globalAlpha = alpha;
 
-      // Metallic outer rim
+      // Metallic outer rim.
       ctx.beginPath();
       ctx.arc(0, 0, r, 0, Math.PI * 2);
       ctx.fillStyle = "#101725";
       ctx.fill();
-
       ctx.strokeStyle = color;
       ctx.lineWidth = Math.max(1, size * 0.055);
       ctx.shadowColor = color;
@@ -90,13 +107,13 @@ export default function TimeVortex() {
       ctx.stroke();
       ctx.shadowBlur = 0;
 
-      // Clock face
+      // Clock face.
       ctx.beginPath();
       ctx.arc(0, 0, r * 0.82, 0, Math.PI * 2);
       ctx.fillStyle = "#1c2430";
       ctx.fill();
 
-      // Hour markings
+      // Hour markings.
       for (let i = 0; i < 12; i++) {
         const a = (i / 12) * Math.PI * 2;
 
@@ -115,7 +132,7 @@ export default function TimeVortex() {
         ctx.stroke();
       }
 
-      // Animated hands
+      // Animated clock hands.
       const hands = [
         { angle: time * 0.8, length: 0.42, width: 1.5 },
         { angle: -time * 2.4, length: 0.62, width: 1 },
@@ -134,7 +151,7 @@ export default function TimeVortex() {
         ctx.stroke();
       });
 
-      // Centre pin
+      // Centre pin.
       ctx.beginPath();
       ctx.arc(0, 0, Math.max(1.5, size * 0.06), 0, Math.PI * 2);
       ctx.fillStyle = "#fff0c9";
@@ -143,7 +160,7 @@ export default function TimeVortex() {
       ctx.restore();
     };
 
-    // Draw a blue TARDIS-style police box
+    // Draw a blue TARDIS-style police box.
     const drawTardis = (box) => {
       const { x, y, size, rotation, alpha } = box;
       const w = size * 0.62;
@@ -154,11 +171,11 @@ export default function TimeVortex() {
       ctx.rotate(rotation);
       ctx.globalAlpha = alpha;
 
-      // Blue glow
+      // Blue glow.
       ctx.shadowColor = "#238bff";
       ctx.shadowBlur = 22;
 
-      // Roof
+      // Roof.
       ctx.fillStyle = "#2863a9";
       ctx.fillRect(-w * 0.55, -h * 0.48, w * 1.1, h * 0.12);
 
@@ -170,17 +187,15 @@ export default function TimeVortex() {
       ctx.closePath();
       ctx.fill();
 
-      // Main body
+      // Main body.
       ctx.fillStyle = "#124b91";
       ctx.fillRect(-w / 2, -h * 0.36, w, h * 0.84);
-
       ctx.strokeStyle = "#77baff";
       ctx.lineWidth = 1.5;
       ctx.strokeRect(-w / 2, -h * 0.36, w, h * 0.84);
-
       ctx.shadowBlur = 0;
 
-      // Police box sign
+      // Police box sign.
       ctx.fillStyle = "#071b30";
       ctx.fillRect(-w * 0.43, -h * 0.32, w * 0.86, h * 0.1);
 
@@ -192,14 +207,14 @@ export default function TimeVortex() {
         ctx.fillText("POLICE BOX", 0, -h * 0.27, w * 0.82);
       }
 
-      // Glowing roof lamp
+      // Glowing roof lamp.
       ctx.fillStyle = "#b8eaff";
       ctx.shadowColor = "#83d6ff";
       ctx.shadowBlur = 15;
       ctx.fillRect(-w * 0.08, -h * 0.53, w * 0.16, h * 0.06);
       ctx.shadowBlur = 0;
 
-      // Windows
+      // Windows.
       for (let row = 0; row < 2; row++) {
         for (let col = 0; col < 2; col++) {
           const wx = -w * 0.36 + col * w * 0.38;
@@ -217,7 +232,7 @@ export default function TimeVortex() {
         }
       }
 
-      // Door panels
+      // Door panels.
       ctx.strokeStyle = "#6ca4df";
       ctx.lineWidth = 1;
 
@@ -232,11 +247,282 @@ export default function TimeVortex() {
         }
       }
 
-      // Door handle
+      // Door handle.
       ctx.beginPath();
       ctx.arc(w * 0.12, h * 0.14, 1.5, 0, Math.PI * 2);
       ctx.fillStyle = "#ffe1a1";
       ctx.fill();
+
+      ctx.restore();
+    };
+
+    // Draw a recognisable side-on DeLorean DMC-12 with Back to the Future details.
+    const drawDelorean = (car) => {
+      const { x, y, size, rotation, alpha, direction } = car;
+      const w = size;
+      const h = size * 0.48;
+
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(direction, 1);
+      ctx.rotate(rotation);
+      ctx.globalAlpha = alpha;
+
+      // Three glowing time-travel exhausts at the rear.
+      ctx.save();
+      ctx.shadowColor = "#38dfff";
+      ctx.shadowBlur = size * 0.18;
+
+      for (let i = 0; i < 3; i++) {
+        const exhaustX = -w * 0.505;
+        const exhaustY = (i - 1) * h * 0.105;
+
+        ctx.beginPath();
+        ctx.ellipse(
+          exhaustX,
+          exhaustY,
+          w * 0.045,
+          h * 0.052,
+          0,
+          0,
+          Math.PI * 2
+        );
+        ctx.fillStyle = "#111c28";
+        ctx.fill();
+        ctx.strokeStyle = "#a7f5ff";
+        ctx.lineWidth = Math.max(1, size * 0.012);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.ellipse(
+          exhaustX - w * 0.012,
+          exhaustY,
+          w * 0.025,
+          h * 0.031,
+          0,
+          0,
+          Math.PI * 2
+        );
+        ctx.fillStyle = i === 1 ? "#ffffff" : "#42d8ff";
+        ctx.fill();
+      }
+
+      ctx.restore();
+
+      // Stainless-steel wedge-shaped body.
+      ctx.shadowColor = "#70e5ff";
+      ctx.shadowBlur = size * 0.12;
+
+      ctx.beginPath();
+      ctx.moveTo(-w * 0.49, h * 0.105);
+      ctx.lineTo(-w * 0.455, -h * 0.015);
+      ctx.lineTo(-w * 0.32, -h * 0.075);
+      ctx.lineTo(-w * 0.17, -h * 0.365);
+      ctx.lineTo(w * 0.105, -h * 0.365);
+      ctx.lineTo(w * 0.275, -h * 0.105);
+      ctx.lineTo(w * 0.425, -h * 0.045);
+      ctx.lineTo(w * 0.49, h * 0.075);
+      ctx.lineTo(w * 0.475, h * 0.155);
+      ctx.lineTo(w * 0.385, h * 0.19);
+      ctx.lineTo(-w * 0.405, h * 0.19);
+      ctx.lineTo(-w * 0.49, h * 0.145);
+      ctx.closePath();
+
+      const steel = ctx.createLinearGradient(
+        0,
+        -h * 0.4,
+        0,
+        h * 0.22
+      );
+
+      steel.addColorStop(0, "#f5f7f8");
+      steel.addColorStop(0.18, "#c7d1d6");
+      steel.addColorStop(0.42, "#778b96");
+      steel.addColorStop(0.65, "#dfe6e9");
+      steel.addColorStop(1, "#7c8c94");
+
+      ctx.fillStyle = steel;
+      ctx.fill();
+      ctx.strokeStyle = "#f0fbff";
+      ctx.lineWidth = Math.max(1, size * 0.012);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Rear bumper and red tail lights.
+      ctx.fillStyle = "#202a32";
+      ctx.fillRect(-w * 0.495, h * 0.13, w * 0.105, h * 0.035);
+
+      ctx.fillStyle = "#e92c49";
+      ctx.shadowColor = "#ff294d";
+      ctx.shadowBlur = size * 0.07;
+      ctx.fillRect(-w * 0.475, h * 0.065, w * 0.055, h * 0.025);
+      ctx.fillRect(-w * 0.475, h * 0.095, w * 0.055, h * 0.025);
+      ctx.shadowBlur = 0;
+
+      // Rear engine-cover louvres.
+      ctx.fillStyle = "#263640";
+      ctx.fillRect(-w * 0.365, -h * 0.105, w * 0.13, h * 0.12);
+
+      for (let i = 0; i < 6; i++) {
+        const lineY = -h * 0.09 + i * h * 0.018;
+
+        ctx.beginPath();
+        ctx.moveTo(-w * 0.355, lineY);
+        ctx.lineTo(-w * 0.245, lineY);
+        ctx.strokeStyle = i % 2 === 0 ? "#d2dce1" : "#7b8c95";
+        ctx.lineWidth = Math.max(0.7, size * 0.008);
+        ctx.stroke();
+      }
+
+      // Mr. Fusion reactor on the rear deck.
+      ctx.save();
+      ctx.translate(-w * 0.285, -h * 0.19);
+
+      ctx.fillStyle = "#d9e0e3";
+      ctx.fillRect(-w * 0.045, -h * 0.11, w * 0.09, h * 0.13);
+
+      ctx.fillStyle = "#7e8b91";
+      ctx.fillRect(-w * 0.05, -h * 0.12, w * 0.1, h * 0.025);
+
+      ctx.fillStyle = "#202b31";
+      ctx.fillRect(-w * 0.035, -h * 0.075, w * 0.07, h * 0.045);
+
+      ctx.fillStyle = "#a8f4ff";
+      ctx.fillRect(-w * 0.025, -h * 0.065, w * 0.05, h * 0.012);
+
+      ctx.restore();
+
+      // Cabin windows and windscreen.
+      ctx.beginPath();
+      ctx.moveTo(-w * 0.14, -h * 0.325);
+      ctx.lineTo(w * 0.085, -h * 0.325);
+      ctx.lineTo(w * 0.225, -h * 0.115);
+      ctx.lineTo(-w * 0.245, -h * 0.115);
+      ctx.closePath();
+
+      const glass = ctx.createLinearGradient(
+        0,
+        -h * 0.34,
+        0,
+        -h * 0.1
+      );
+
+      glass.addColorStop(0, "#a9e7f8");
+      glass.addColorStop(0.3, "#31566c");
+      glass.addColorStop(1, "#101e2b");
+
+      ctx.fillStyle = glass;
+      ctx.fill();
+      ctx.strokeStyle = "#eefaff";
+      ctx.lineWidth = Math.max(1, size * 0.012);
+      ctx.stroke();
+
+      // Gull-wing door outline and handle.
+      ctx.beginPath();
+      ctx.moveTo(-w * 0.12, -h * 0.105);
+      ctx.lineTo(w * 0.19, -h * 0.105);
+      ctx.lineTo(w * 0.255, h * 0.12);
+      ctx.lineTo(-w * 0.12, h * 0.12);
+      ctx.closePath();
+
+      ctx.strokeStyle = "#f1fbff";
+      ctx.lineWidth = Math.max(1, size * 0.01);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(w * 0.13, -h * 0.09);
+      ctx.lineTo(w * 0.205, h * 0.1);
+      ctx.strokeStyle = "#657b86";
+      ctx.stroke();
+
+      ctx.fillStyle = "#263844";
+      ctx.fillRect(w * 0.015, h * 0.035, w * 0.055, h * 0.012);
+
+      // Front grille and square headlamps.
+      ctx.fillStyle = "#202b34";
+      ctx.fillRect(w * 0.405, h * 0.045, w * 0.075, h * 0.075);
+
+      ctx.fillStyle = "#e8faff";
+      ctx.fillRect(w * 0.414, h * 0.052, w * 0.025, h * 0.025);
+      ctx.fillRect(w * 0.414, h * 0.085, w * 0.025, h * 0.025);
+      ctx.fillRect(w * 0.45, h * 0.052, w * 0.02, h * 0.025);
+      ctx.fillRect(w * 0.45, h * 0.085, w * 0.02, h * 0.025);
+
+      ctx.fillStyle = "#131c24";
+      ctx.fillRect(w * 0.285, h * 0.12, w * 0.115, h * 0.025);
+
+      ctx.fillStyle = "#aab8bf";
+      ctx.fillRect(w * 0.3, h * 0.126, w * 0.08, h * 0.007);
+
+      // Exposed time-machine wiring and glowing flux coils.
+      ctx.strokeStyle = "#50dfff";
+      ctx.lineWidth = Math.max(1, size * 0.012);
+      ctx.shadowColor = "#36cfff";
+      ctx.shadowBlur = size * 0.08;
+
+      for (let i = 0; i < 4; i++) {
+        const coilX = -w * 0.17 + i * w * 0.055;
+
+        ctx.beginPath();
+        ctx.moveTo(coilX, h * 0.15);
+        ctx.lineTo(coilX, h * 0.215);
+        ctx.stroke();
+      }
+
+      // Electrical arcs beneath the car.
+      ctx.beginPath();
+      ctx.moveTo(-w * 0.34, h * 0.285);
+      ctx.lineTo(-w * 0.19, h * 0.25);
+      ctx.lineTo(-w * 0.07, h * 0.31);
+      ctx.lineTo(w * 0.08, h * 0.26);
+      ctx.lineTo(w * 0.21, h * 0.3);
+      ctx.lineTo(w * 0.36, h * 0.265);
+      ctx.stroke();
+
+      ctx.shadowBlur = 0;
+
+      // Wheels and turbine-style alloy hubs.
+      for (const wheelX of [-w * 0.31, w * 0.31]) {
+        ctx.beginPath();
+        ctx.ellipse(
+          wheelX,
+          h * 0.205,
+          w * 0.085,
+          h * 0.235,
+          0,
+          0,
+          Math.PI * 2
+        );
+
+        ctx.fillStyle = "#070b10";
+        ctx.fill();
+        ctx.strokeStyle = "#a8b6bd";
+        ctx.lineWidth = Math.max(1.2, size * 0.018);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(wheelX, h * 0.205, w * 0.047, 0, Math.PI * 2);
+        ctx.fillStyle = "#cbd5da";
+        ctx.fill();
+        ctx.strokeStyle = "#657984";
+        ctx.lineWidth = Math.max(0.8, size * 0.008);
+        ctx.stroke();
+
+        for (let spoke = 0; spoke < 8; spoke++) {
+          const angle = (spoke / 8) * Math.PI * 2;
+
+          ctx.beginPath();
+          ctx.moveTo(wheelX, h * 0.205);
+          ctx.lineTo(
+            wheelX + Math.cos(angle) * w * 0.037,
+            h * 0.205 + Math.sin(angle) * w * 0.037
+          );
+
+          ctx.strokeStyle = "#657984";
+          ctx.lineWidth = Math.max(0.6, size * 0.006);
+          ctx.stroke();
+        }
+      }
 
       ctx.restore();
     };
@@ -250,10 +536,12 @@ export default function TimeVortex() {
       const cy = height / 2;
       const scale = Math.min(width, height);
 
-      // Midnight background
+      // Midnight background.
       const bg = ctx.createRadialGradient(
-        cx, cy, 0, cx, cy, scale * 0.85
+        cx, cy, 0,
+        cx, cy, scale * 0.85
       );
+
       bg.addColorStop(0, "#172238");
       bg.addColorStop(0.45, "#080f20");
       bg.addColorStop(1, "#02040b");
@@ -261,10 +549,12 @@ export default function TimeVortex() {
       ctx.fillStyle = bg;
       ctx.fillRect(0, 0, width, height);
 
-      // Central golden glow
+      // Central golden glow.
       const glow = ctx.createRadialGradient(
-        cx, cy, 0, cx, cy, scale * 0.42
+        cx, cy, 0,
+        cx, cy, scale * 0.42
       );
+
       glow.addColorStop(0, "rgba(216,155,66,0.16)");
       glow.addColorStop(0.4, "rgba(72,100,155,0.08)");
       glow.addColorStop(1, "rgba(0,0,0,0)");
@@ -272,13 +562,14 @@ export default function TimeVortex() {
       ctx.fillStyle = glow;
       ctx.fillRect(0, 0, width, height);
 
-      // Spiral stars
+      // Spiral stars.
       for (const star of stars) {
         const radius =
           (star.radius + time * 35 * star.speed) %
           (scale * 0.85);
 
-        const angle = star.angle + time * star.speed + radius * 0.002;
+        const angle =
+          star.angle + time * star.speed + radius * 0.002;
 
         ctx.beginPath();
         ctx.arc(
@@ -292,10 +583,11 @@ export default function TimeVortex() {
         ctx.fillStyle = `rgba(255,211,139,${
           star.alpha * (1 - radius / (scale * 0.85))
         })`;
+
         ctx.fill();
       }
 
-      // Rotating clockwork rings
+      // Rotating clockwork rings.
       ctx.save();
       ctx.translate(cx, cy);
 
@@ -308,13 +600,19 @@ export default function TimeVortex() {
 
         ctx.beginPath();
         ctx.ellipse(
-          0, 0, radius,
+          0,
+          0,
+          radius,
           radius * (0.54 + depth * 0.22),
-          0, 0, Math.PI * 2
+          0,
+          0,
+          Math.PI * 2
         );
+
         ctx.strokeStyle = `rgba(210,164,91,${
           0.08 + (1 - depth) * 0.28
         })`;
+
         ctx.lineWidth = depth < 0.25 ? 2 : 1;
         ctx.stroke();
 
@@ -336,6 +634,7 @@ export default function TimeVortex() {
           ctx.strokeStyle = j % 5 === 0
             ? "rgba(255,207,125,0.55)"
             : "rgba(205,175,120,0.22)";
+
           ctx.lineWidth = j % 5 === 0 ? 1.5 : 0.7;
           ctx.stroke();
         }
@@ -343,7 +642,7 @@ export default function TimeVortex() {
         ctx.restore();
       }
 
-      // Central clock face
+      // Central clock face.
       const r = scale * 0.135;
 
       ctx.beginPath();
@@ -366,7 +665,12 @@ export default function TimeVortex() {
 
       numerals.forEach((n, i) => {
         const a = i * Math.PI / 6 - Math.PI / 2;
-        ctx.fillText(n, Math.cos(a) * r * 0.73, Math.sin(a) * r * 0.73);
+
+        ctx.fillText(
+          n,
+          Math.cos(a) * r * 0.73,
+          Math.sin(a) * r * 0.73
+        );
       });
 
       for (const [angle, length, color, lineWidth] of [
@@ -376,15 +680,18 @@ export default function TimeVortex() {
       ]) {
         ctx.save();
         ctx.rotate(angle);
+
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.lineTo(0, -length);
+
         ctx.strokeStyle = color;
         ctx.lineWidth = lineWidth;
         ctx.lineCap = "round";
         ctx.shadowColor = color;
         ctx.shadowBlur = 8;
         ctx.stroke();
+
         ctx.restore();
       }
 
@@ -392,14 +699,16 @@ export default function TimeVortex() {
       ctx.arc(0, 0, 4, 0, Math.PI * 2);
       ctx.fillStyle = "#fff0c9";
       ctx.fill();
+
       ctx.restore();
 
-      // Golden spiral filaments
+      // Golden spiral filaments.
       for (let strand = 0; strand < 5; strand++) {
         ctx.beginPath();
 
         for (let i = 0; i <= 220; i++) {
           const p = i / 220;
+
           const a =
             p * Math.PI * 5 +
             time * (strand % 2 ? -1 : 1) +
@@ -409,18 +718,22 @@ export default function TimeVortex() {
           const x = cx + Math.cos(a) * radius;
           const y = cy + Math.sin(a) * radius * 0.68;
 
-          if (i === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
+          if (i === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
         }
 
         ctx.strokeStyle = strand % 2 === 0
           ? "rgba(255,192,99,0.2)"
           : "rgba(107,153,222,0.18)";
+
         ctx.lineWidth = 1.2;
         ctx.stroke();
       }
 
-      // Animate the 2D clocks
+      // Animate the 2D clocks.
       for (const clock of clocks) {
         clock.x += clock.vx;
         clock.y += clock.vy;
@@ -436,11 +749,11 @@ export default function TimeVortex() {
         drawClock(clock);
       }
 
-      // Occasionally introduce a TARDIS
+      // Occasionally introduce a TARDIS.
       if (!tardis) {
         tardisTimer++;
 
-        // Approximately every 12–23 seconds at 60 FPS
+        // Approximately every 12–23 seconds at 60 FPS.
         if (tardisTimer > rand(720, 1380)) {
           tardis = createTardis();
           tardisTimer = 0;
@@ -450,13 +763,14 @@ export default function TimeVortex() {
         tardis.y += tardis.vy;
         tardis.rotation += tardis.spin;
 
-        // A faint blue trail
+        // A faint blue trail.
         ctx.beginPath();
         ctx.moveTo(
           tardis.x - tardis.vx * 12,
           tardis.y - tardis.vy * 12
         );
         ctx.lineTo(tardis.x, tardis.y);
+
         ctx.strokeStyle = "rgba(65,155,255,0.3)";
         ctx.lineWidth = tardis.size * 0.18;
         ctx.shadowColor = "#238bff";
@@ -476,11 +790,97 @@ export default function TimeVortex() {
         }
       }
 
-      // Dark vignette
+      // Occasionally introduce the DeLorean.
+      // Approximately every 30–50 seconds at 60 FPS.
+      if (!delorean) {
+        deloreanTimer++;
+
+        if (deloreanTimer > deloreanNextSpawn) {
+          delorean = createDelorean();
+          deloreanTimer = 0;
+          deloreanNextSpawn = rand(1800, 3000);
+        }
+      } else {
+        delorean.x += delorean.vx;
+        delorean.y += delorean.vy;
+        delorean.rotation += delorean.spin;
+
+        // Glowing time-travel trail.
+        ctx.save();
+        ctx.globalAlpha = delorean.alpha;
+
+        const trail = ctx.createLinearGradient(
+          delorean.x,
+          delorean.y,
+          delorean.x - delorean.vx * delorean.size * 0.7,
+          delorean.y
+        );
+
+        trail.addColorStop(0, "rgba(120,240,255,0.7)");
+        trail.addColorStop(0.4, "rgba(45,155,255,0.3)");
+        trail.addColorStop(1, "rgba(45,155,255,0)");
+
+        ctx.strokeStyle = trail;
+        ctx.lineWidth = delorean.size * 0.22;
+        ctx.shadowColor = "#36cfff";
+        ctx.shadowBlur = 22;
+
+        ctx.beginPath();
+        ctx.moveTo(
+          delorean.x,
+          delorean.y + delorean.size * 0.12
+        );
+        ctx.lineTo(
+          delorean.x - delorean.vx * delorean.size * 0.7,
+          delorean.y + delorean.size * 0.12
+        );
+        ctx.stroke();
+
+        // Electrical sparks.
+        ctx.shadowBlur = 8;
+        ctx.fillStyle = "#a5f5ff";
+
+        for (let i = 0; i < 3; i++) {
+          const sparkX =
+            delorean.x - delorean.vx * rand(3, 16);
+
+          const sparkY =
+            delorean.y +
+            rand(-delorean.size * 0.3, delorean.size * 0.4);
+
+          ctx.beginPath();
+          ctx.arc(
+            sparkX,
+            sparkY,
+            rand(0.8, 2.2),
+            0,
+            Math.PI * 2
+          );
+          ctx.fill();
+        }
+
+        ctx.restore();
+
+        drawDelorean(delorean);
+
+        if (
+          delorean.x < -delorean.size * 3 ||
+          delorean.x > width + delorean.size * 3
+        ) {
+          delorean = null;
+        }
+      }
+
+      // Dark vignette.
       const vignette = ctx.createRadialGradient(
-        cx, cy, scale * 0.18,
-        cx, cy, scale * 0.8
+        cx,
+        cy,
+        scale * 0.18,
+        cx,
+        cy,
+        scale * 0.8
       );
+
       vignette.addColorStop(0, "rgba(0,0,0,0)");
       vignette.addColorStop(1, "rgba(0,0,0,0.5)");
 
