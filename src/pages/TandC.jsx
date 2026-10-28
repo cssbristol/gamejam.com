@@ -87,7 +87,7 @@ function TandC() {
               technical infrastructure relating to it. This Website is protected
               by Copyright and the Copyright, Trademarks, logos and Intellectual
               Property rights for the content of this Website are the property
-              of BEEES and CSS. Any use, printing or copying of materials on
+              of CSS. Any use, printing or copying of materials on
               this Website, other than in the course of browsing, is strictly
               prohibited. Any framing of this Website is prohibited.
               <br />

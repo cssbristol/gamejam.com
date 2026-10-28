@@ -80,7 +80,7 @@ function Privacy() {
             Your personal data will be stored securely and will only be
             accessible to the event organisers. We will retain your data only
             for the duration of Gamejam and will delete it no later than
-            <strong>30 April 2025</strong>.
+            <strong>30 April 2027</strong>.
           </p>
 
           <h2>5. Data Sharing and Third Parties</h2>
@@ -115,8 +115,6 @@ function Privacy() {
           </ul>
           <p>
             To exercise your rights, please contact us at{" "}
-            <a href="mailto:committee@beees.org.uk">committee@beees.org.uk</a>{" "}
-            or{" "}
             <a href="mailto:cs-society@bristol.ac.uk">
               cs-society@bristol.ac.uk
             </a>
@@ -146,8 +144,6 @@ function Privacy() {
           <p>
             If you have any questions about this Privacy Policy, please contact
             us at{" "}
-            <a href="mailto:committee@beees.org.uk">committee@beees.org.uk</a>{" "}
-            or{" "}
             <a href="mailto:cs-society@bristol.ac.uk">
               cs-society@bristol.ac.uk
             </a>
