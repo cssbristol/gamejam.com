@@ -33,11 +33,11 @@ const sponsors = [
     link: "https://ai4ci.ac.uk/",
     image: ai4ci_logo,
   },
-  {
-    name: "Susquehanna",
-    link: "https://sig.com/",
-    image: susquehanna_logo,
-  },
+  // {
+  //   name: "Susquehanna",
+  //   link: "https://sig.com/",
+  //   image: susquehanna_logo,
+  // },
   {
     name: "Trackr",
     link: "https://the-trackr.com/",
