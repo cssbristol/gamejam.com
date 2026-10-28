@@ -7,7 +7,7 @@ function Schedule() {
         <div className="table-heading">Schedule</div>
         <div className="schedule-grid">
           <table className="table">
-            <caption>Day 1</caption>
+            <caption>Saturday</caption>
             <thead>
               <tr>
                 <th>Time</th>
@@ -35,7 +35,7 @@ function Schedule() {
           </table>
 
           <table className="table">
-            <caption>Day 2</caption>
+            <caption>Sunday</caption>
             <thead>
               <tr>
                 <th>Time</th>
