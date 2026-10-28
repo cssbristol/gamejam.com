@@ -16,15 +16,15 @@ function Schedule() {
             </thead>
             <tbody>
               <tr>
-                <td>11:30-12:00</td>
+                <td>10:30</td>
                 <td>Check In</td>
               </tr>
               <tr>
-                <td>12:00</td>
+                <td>11:30</td>
                 <td>Introduction</td>
               </tr>
               <tr>
-                <td>12:30</td>
+                <td>12:00</td>
                 <td>Start Coding</td>
               </tr>
               <tr>
@@ -44,19 +44,19 @@ function Schedule() {
             </thead>
             <tbody>
               <tr>
-                <td>10:15</td>
+                <td>09:00</td>
                 <td>Breakfast</td>
               </tr>
               <tr>
-                <td>12:30</td>
+                <td>12:00</td>
                 <td>Coding Ends</td>
               </tr>
               <tr>
-                <td>13:30</td>
+                <td>12:15</td>
                 <td>Judging Begins</td>
               </tr>
               <tr>
-                <td>15:30</td>
+                <td>15:00</td>
                 <td>Closing Presentation</td>
               </tr>
             </tbody>
