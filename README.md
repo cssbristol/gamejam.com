@@ -4,7 +4,7 @@
 
 Welcome to **Gamejam** – a project developed for the **University of Bristol 2026 Hackathon**!
 
-This website is created by **2026/2026 CSS webmaster** [Jake Snee](https://www.linkedin.com/in/jake-snee-606610301/).
+This website is created by **2026/2027 CSS webmaster** [Jake Snee](https://www.linkedin.com/in/jake-snee-606610301/).
 
 ## Built With
 
